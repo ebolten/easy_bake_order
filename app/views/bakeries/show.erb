@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Bakery Info Page</title>
+        <h1> <%= @bakery.name %> </h1>
+    </head>
+
+    <body>
+
+        <h2> Address: <%= @bakery.address %> </h2>
+
+        <br>
+        <hr />
+        <br>
+        <h2> Menu </h2>
+        <ul>
+        <% @bakery.menu_items.each do |item| %>
+            <li><%= item.name %></li>
+        <%end%>
+        </ul>
+
+        <br>
+        <%= link_to 'Create an Order with This Bakery', new_order_path %>
+        
+    </body>
+</html>

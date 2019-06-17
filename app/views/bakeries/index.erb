@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>List Bakeries</title>
+        <h1>All Bakeries Nearby</h1>
+    </head>
+
+    <body>
+        <% @bakeries.each do |bakery| %>
+            <%= link_to bakery.name, bakery_path(bakery) %>
+        <% end %>
+        
+    </body>
+</html>
