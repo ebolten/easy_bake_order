@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
+        <% session['bakery_id'] = @bakery.id %>
         <title>Bakery Info Page</title>
         <h1> <%= @bakery.name %> </h1>
     </head>

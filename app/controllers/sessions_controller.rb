@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    session.clear
     # get the user from the database
     @customer = Customer.find_by(name: params[:name])
     # if they're right

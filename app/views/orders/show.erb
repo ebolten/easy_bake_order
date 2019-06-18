@@ -1,10 +1,29 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-    
+        <div><button> <%= link_to "Back to Profile", customer_path(Customer.find(@order.customer_id)) %> </button></div><br>
+        <title>Order Information</title>
+        <h1> <%= @order.menu_item.name %> </h1>
     </head>
 
     <body>
+
+            <h3>Order: <%= @order.menu_item.name %></h3>
+            <h3>Description: <%= @order.desc %></h3>
+            <h3>Delivery? <%= @order.is_delivery? %></li></h3>
+
+        <% if @order.menu_item.name == 'Cake' %>
+            <%= image_tag 'cake.png' %><br>
+        <% elsif @order.menu_item.name == 'Donut' %>
+            <%= image_tag 'donut.png' %><br>
+        <%end%>
+        
+        <br>
+        <%= form_tag @order, method:'DELETE' do %>
+            <%= submit_tag "Delete This Order" %>
+        <%end%>
+
+
         
     </body>
 </html>

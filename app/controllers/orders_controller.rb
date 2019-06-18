@@ -4,11 +4,19 @@ class OrdersController < ApplicationController
         @order = Order.new
     end
 
+    def show
+        @order = Order.find(params['id'])
+    end
+
     def create
-
         @order = Order.create(order_params)
+        redirect_to customer_path(Customer.find(@order.customer_id))
+    end
 
-        redirect_to bakeries_path
+    def destroy
+        @order = Order.find(params['id'])
+        @order.destroy
+        redirect_to customer_path(Customer.find(@order.customer_id))
     end
 
     private
