@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if @customer
         # set a cookie with that user's ID
         session["user_id"] = @customer.id
-        redirect_to bakeries_path
+        redirect_to customer_path(@customer)
     else
     # if they're wrong
         # re-do the page

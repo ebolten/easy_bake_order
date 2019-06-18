@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <p><%= @customer.name %>'s Account</p>
+        <button>Log Out</button>
+        <title>Show Customer</title>
+        <h1> <%= @customer.name %>'s Orders </h1>
+    </head>
+
+    <body>
+        <br>
+        <% @customer.orders.each do |order| %>
+            <h3><%= order.menu_item.bakery.name %></h3>
+            <h4><li>Order: <%= order.menu_item.name %></li></h4>
+            <h4><li>Description: <%= order.desc %></li></h4>
+            <br>
+        <%end%>
+
+    <button> <%= link_to "Create an Order", new_order_path %> </button><br>
+    <button> <%= link_to "See all Bakeries", bakeries_path %> </button><br>
+
+    <br>
+        
+    </body>
+</html>

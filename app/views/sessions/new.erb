@@ -1,4 +1,5 @@
 <h1>Login</h1>
+<h2>Or Create an Account <%= link_to "Here", new_customer_path %></h2>
 
 <div class="error">
     <%= flash.notice %>
@@ -7,5 +8,6 @@
 <%= form_tag "/login" do %>
     <%= label :name, "Username" %>
     <%= text_field_tag :name %>
+
     <%= submit_tag "Login" %>
 <% end %>

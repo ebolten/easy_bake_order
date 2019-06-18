@@ -8,8 +8,9 @@
     <body>
 
         <%= form_for @order do |f|%>
-            <%= f.label "Select Your Name" %>
-            <%= f.collection_select(:customer_id, Customer.all, :id, :name, {:prompt => "Your Name"}) %>
+
+            <%= f.hidden_field(:customer_id, :value => session["user_id"]) %>
+            
             <%= f.label "Is Your Order a Delivery?" %>
             <%= f.text_field :is_delivery? %>
 
