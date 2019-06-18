@@ -1,0 +1,11 @@
+<h1>Login</h1>
+
+<div class="error">
+    <%= flash.notice %>
+</div>
+
+<%= form_tag "/login" do %>
+    <%= label :name, "Username" %>
+    <%= text_field_tag :name %>
+    <%= submit_tag "Login" %>
+<% end %>
