@@ -14,7 +14,10 @@
             <%= f.text_field :is_delivery? %>
 
             <%= f.label "Choose an Item" %>
-            <%= f.collection_select(:menu_item_ids, MenuItem.all, :id, :name, {:prompt => "Select one"}) %>
+            <%= f.collection_select(:menu_item_id, MenuItem.all, :id, :name, {:prompt => "Select one"}) %>
+
+            <%= f.label "Write a Description for Your Order" %>
+            <%= f.text_field :desc %>
 
             <%= f.submit "Submit Order" %>
         <%end%>

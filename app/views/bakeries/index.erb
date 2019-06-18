@@ -2,12 +2,12 @@
 <html>
     <head>
         <title>List Bakeries</title>
-        <h1>All Bakeries Nearby</h1>
+        <h1>All Bakeries</h1>
     </head>
 
     <body>
         <% @bakeries.each do |bakery| %>
-            <%= link_to bakery.name, bakery_path(bakery) %>
+            <h2><%= link_to bakery.name, bakery_path(bakery) %></h2>
         <% end %>
         
     </body>

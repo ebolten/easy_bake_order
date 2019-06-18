@@ -9,14 +9,19 @@
 emily = Customer.create(name: "Emily", tel_num: "301")
 kemunto = Customer.create(name: "Kemunto", tel_num: "540")
 
-order_one = Order.create(customer_id:1,is_delivery?:false)
+order_one = Order.new
+order_one.customer = emily
 
 dd = Bakery.create(name:"Dunkin Donuts",address:"Washington DC")
+ad = Bakery.create(name:"Artpast Dulces",address:"Miraflores, Peru")
 
-donut = MenuItem.create(name:"Donut",bakery_id:1)
+donut = MenuItem.create(name:"Donut",bakery_id:dd.id)
+cake = MenuItem.create(name:"Cake",bakery_id:ad.id)
 
-milk = Ingredient.create(name:"Milk",menu_item_id:1)
-wheat = Ingredient.create(name:"Wheat",menu_item_id:1)
-eggs = Ingredient.create(name:"Eggs",menu_item_id:1)
-sugar = Ingredient.create(name:"Sugar",menu_item_id:1)
-icing = Ingredient.create(name:"Icing",menu_item_id:1)
+milk = Ingredient.create(name:"Milk",menu_item_id:donut.id)
+wheat = Ingredient.create(name:"Wheat",menu_item_id:donut.id)
+eggs = Ingredient.create(name:"Eggs",menu_item_id:donut.id)
+sugar = Ingredient.create(name:"Sugar",menu_item_id:cake.id)
+icing = Ingredient.create(name:"Icing",menu_item_id:cake.id)
+
+

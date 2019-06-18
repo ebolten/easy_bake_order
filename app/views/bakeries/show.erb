@@ -12,12 +12,22 @@
         <br>
         <hr />
         <br>
-        <h2> Menu </h2>
+
+        <div>
+        <h1> Menu </h1>
         <ul>
         <% @bakery.menu_items.each do |item| %>
-            <li><%= item.name %></li>
+            <h2><li><%= item.name %></li></h2>
+            <ul>
+                <% item.ingredients.each do |ing| %>
+                    <h4><li><%= ing.name %></h4></li>
+                <%end%>
+
+
+            </ul>
         <%end%>
         </ul>
+        </div>
 
         <br>
         <%= link_to 'Create an Order with This Bakery', new_order_path %>
