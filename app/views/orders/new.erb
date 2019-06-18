@@ -9,15 +9,15 @@
 
         <%= form_for @order do |f|%>
             <%= f.label "Select Your Name" %>
-            <%= f.collection_select(:customer_id, Customer.all, :id, :name, {:prompt => "You're Name"}) %>
+            <%= f.collection_select(:customer_id, Customer.all, :id, :name, {:prompt => "Your Name"}) %>
             <%= f.label "Is Your Order a Delivery?" %>
             <%= f.text_field :is_delivery? %>
 
             <%= f.label "Choose an Item" %>
-            <%= f.collection_select(:order_menu_ids, MenuItem.all, :id, :name) %>
+            <%= f.collection_select(:menu_item_ids, MenuItem.all, :id, :name, {:prompt => "Select one"}) %>
 
             <%= f.submit "Submit Order" %>
         <%end%>
-       
+
     </body>
 </html>
