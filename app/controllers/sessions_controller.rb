@@ -5,16 +5,20 @@ class SessionsController < ApplicationController
 
   def create
     # get the user from the database
+
     @customer = Customer.find_by(name: params[:name])
+    @password = Customer.find_by(password_digest: params[:password_digest])
     # if they're right
-    if @customer
+    if @customer && @password
         # set a cookie with that user's ID
         session["user_id"] = @customer.id
         redirect_to bakeries_path
+
+
     else
     # if they're wrong
         # re-do the page
-        flash.notice = "No customer with that username.  Please try again."
+        flash.notice = "No customer with that username and Password. Please try again."
         render :new
     end
   end
