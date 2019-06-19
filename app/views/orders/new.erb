@@ -1,4 +1,12 @@
 <!DOCTYPE HTML>
+
+
+<% if @order.errors %>
+  <% @order.errors.full_messages.each do |message|%><br>
+    <%= message %>
+  <%end%>
+<%end%>
+
 <html>
     <head>
         <title>New Order</title>
@@ -8,16 +16,31 @@
     <body>
 
         <%= form_for @order do |f|%>
-            <%= f.label "Select Your Name" %>
-            <%= f.collection_select(:customer_id, Customer.all, :id, :name, {:prompt => "Your Name"}) %>
+
+            <%= f.hidden_field(:customer_id, :value => session["user_id"]) %>
+
             <%= f.label "Is Your Order a Delivery?" %>
-            <%= f.text_field :is_delivery? %>
+            <%= f.radio_button(:is_delivery?, :checked => false, value:true) %>Yes
+            <%= f.radio_button(:is_delivery?, :checked => false, value:false) %>No
+
+            <br>
+            <br>
 
             <%= f.label "Choose an Item" %>
-            <%= f.collection_select(:menu_item_id, MenuItem.all, :id, :name, {:prompt => "Select one"}) %>
+            <% if session['bakery_id'] %>
+                <%= f.collection_select(:menu_item_id, Bakery.find(session['bakery_id']).menu_items, :id, :name, {:prompt => "Select one"}) %>
+            <% else %>
+                <%= f.collection_select(:menu_item_id, MenuItem.all, :id, :name, {:prompt => "Select one"}) %>
+            <%end%>
+
+            <br>
+            <br>
 
             <%= f.label "Write a Description for Your Order" %>
             <%= f.text_field :desc %>
+
+            <br>
+            <br>
 
             <%= f.submit "Submit Order" %>
         <%end%>

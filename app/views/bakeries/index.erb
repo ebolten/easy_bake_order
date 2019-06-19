@@ -6,9 +6,13 @@
     </head>
 
     <body>
+        <div>
         <% @bakeries.each do |bakery| %>
             <h2><%= link_to bakery.name, bakery_path(bakery) %></h2>
         <% end %>
-        
+        </div>
+
+        <button><%= link_to "You're Profile", customer_path(Customer.find(session['user_id'])) %></button><br>
+        <br>
     </body>
 </html>

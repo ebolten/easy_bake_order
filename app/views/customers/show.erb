@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <p><%= @customer.name %>'s Account</p>
+
+        <%= form_tag logout_path, method:'DELETE' do %>
+            <%= submit_tag "Log Out" %>
+        <%end%>
+
+        <title>Show Customer</title>
+        <h1> <%= @customer.name %>'s Orders </h1>
+    </head>
+
+    <body>
+        
+        <!-- <p><%= image_tag 'cake.png' %></p> -->
+        
+        <% if @customer.orders.length == 0 %>
+            <h3> No Orders Yet. </h3>
+        <%else%>
+            <br>
+            <% i = 0 %>
+            <% @customer.orders.each do |order| %>
+                <% i += 1 %>
+                <h3><%= link_to order.menu_item.bakery.name, bakery_path(order.menu_item.bakery) %></h3>
+                <h4><li><%= link_to "Order Number #{i}", order_path(order) %></li></h4>
+            <%end%>
+        <%end%>
+    
+    <br>
+    <div><button style='font-size:15px'> <%= link_to "Create an Order", new_order_path %> </button></div>
+    <br>
+    <div><button style='font-size:15px'> <%= link_to "See all Bakeries", bakeries_path %> </button></div>
+
+    <br>
+        
+    </body>
+</html>

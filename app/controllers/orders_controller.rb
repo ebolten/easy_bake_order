@@ -4,11 +4,24 @@ class OrdersController < ApplicationController
         @order = Order.new
     end
 
+    def show
+        @order = Order.find(params[:id])
+    end
+
     def create
-
+        byebug
         @order = Order.create(order_params)
+        if @order.valid?
+          redirect_to customer_path(Customer.find(@order.customer_id))
+        else
+          render :new
+        end
+    end
 
-        redirect_to bakeries_path
+    def destroy
+        @order = Order.find(params[:id])
+        @order.destroy
+        redirect_to customer_path(Customer.find(@order.customer_id))
     end
 
     private
