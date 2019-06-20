@@ -9,7 +9,6 @@ class OrdersController < ApplicationController
     end
 
     def create
-        byebug
         @order = Order.create(order_params)
         if @order.valid?
           redirect_to customer_path(Customer.find(@order.customer_id))
@@ -27,7 +26,7 @@ class OrdersController < ApplicationController
     private
 
     def order_params
-        params.require(:order).permit(:customer_id,:is_delivery?, :menu_item_id, :desc)
+        params.require(:order).permit(:customer_id,:is_delivery, :menu_item_id, :desc)
     end
 
 end

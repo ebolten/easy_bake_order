@@ -20,8 +20,8 @@
             <%= f.hidden_field(:customer_id, :value => session["user_id"]) %>
 
             <%= f.label "Is Your Order a Delivery?" %>
-            <%= f.radio_button(:is_delivery?, :checked => false, value:true) %>Yes
-            <%= f.radio_button(:is_delivery?, :checked => false, value:false) %>No
+            <%= f.radio_button(:is_delivery, :checked => false, :value => true) %>Yes
+            <%= f.radio_button(:is_delivery, :checked => false, :value => false) %>No
 
             <br>
             <br>

@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>New Menu Item</title>
+        <h1>Create a Menu Item</h1>
+    </head>
+
+    <body>
+        
+        <%= form_for @menu_item do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+        <%= f.submit %>
+        <%end%>
+
+
+    </body>
+</html>

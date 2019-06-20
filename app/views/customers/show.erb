@@ -1,38 +1,69 @@
 <!DOCTYPE HTML>
 <html>
+    <!-- title -->
     <head>
-        <p><%= @customer.name %>'s Account</p>
-
-        <%= form_tag logout_path, method:'DELETE' do %>
-            <%= submit_tag "Log Out" %>
-        <%end%>
-
         <title>Show Customer</title>
-        <h1> <%= @customer.name %>'s Orders </h1>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     </head>
 
-    <body>
-        
-        <!-- <p><%= image_tag 'cake.png' %></p> -->
-        
-        <% if @customer.orders.length == 0 %>
-            <h3> No Orders Yet. </h3>
-        <%else%>
-            <br>
-            <% i = 0 %>
-            <% @customer.orders.each do |order| %>
-                <% i += 1 %>
-                <h3><%= link_to order.menu_item.bakery.name, bakery_path(order.menu_item.bakery) %></h3>
-                <h4><li><%= link_to "Order Number #{i}", order_path(order) %></li></h4>
-            <%end%>
-        <%end%>
+    <body class='customer_body'>
     
-    <br>
-    <div><button style='font-size:15px'> <%= link_to "Create an Order", new_order_path %> </button></div>
-    <br>
-    <div><button style='font-size:15px'> <%= link_to "See all Bakeries", bakeries_path %> </button></div>
+        <!-- menu at top of page -->
+        <div class="ui inverted menu">
+            <a class="item">
+                <%= form_tag logout_path, method:'DELETE' do %>
+                    <%= submit_tag "Log Out" %></p>
+                <%end%>
+            </a>
+            <a class="item">
+                <%= form_tag new_order_path, method:'GET' do %>
+                    <%= submit_tag "Create an Order" %>
+                <%end%>
+            </a>
+            <a class="item">
+            <%= form_tag bakeries_path, method:'GET' do %>
+                    <%= submit_tag "See all Bakeries" %>
+                <%end%>
+            </a>
+            <a class="item">
+                <%= form_tag edit_customer_path, method:'GET' do %>
+                    <%= submit_tag "Edit Profile" %>
+                <%end%>
+            </a>
+        </div>
 
-    <br>
+        <!-- customer profile header -->
+        <div class='customer_profile'>
+        </div>
+
+        <!-- basic information about customer -->
+        <div>
+            <h1 style='font-size:50px;font-weight:bold'><%= @customer.name %></h1>
+
+            <p style='font-size:15px;font-weight:bold'>Telephone: <%= @customer.tel_num %></p>
+
+            <p style='font-size:15px;font-weight:bold'>Favorite Bakery: <%= @customer.favorite_resaurant %> </p>
+        </div>
+
+        <!-- shows customer's orders -->
+        <div class='customer_orders'>
+            <br>
+            <h2 style='font-size:40px;font-weight:bold'> Orders: </h1>
+        
+            <% if @customer.orders.length == 0 %>
+                <h3> No Orders Yet. </h3>
+            <%else%>
+                
+                <% i = 0 %>
+                <% @customer.orders.each do |order| %>
+                    <% i += 1 %>
+                    <h3><%= link_to order.menu_item.bakery.name, bakery_path(order.menu_item.bakery) %></h3>
+                    <h4><li><%= link_to "Order Number #{i}", order_path(order) %></li></h4>
+                    <br>
+                <%end%>
+            <%end%>
+        </div>
         
     </body>
 </html>

@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+    
+    <head>
+        <title>Create Bakery</title>
+        <h1>Create a New Bakery</h1>
+    </head>
+
+    <body>
+        
+        <%= form_for @bakery do |f| %>
+            <%= f.label "Bakery's Name" %>
+            <%= f.text_field :name %>
+            <%= f.label "Bakery's Address" %>
+            <%= f.text_field :address %>
+            <%= f.submit "Create Bakery" %>
+        <% end %>
+
+    </body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Menu Item Show</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    </head>
+
+    <body class='menu_item_body'>
+
+        <h1> <%= @menu_item.name %> </h1>
+        <h2> Made By: <%= Bakery.find(@menu_item.bakery_id).name %> </h2>
+
+        <h3>Contains: </h3>
+        <ul>
+            <% @menu_item.ingredients.each do |ing| %>
+                <li><p style='font-weight:bold;font-size:20px'><%= ing.name %></p></li>
+            <%end%>
+        </ul>
+        <br><br>
+        <%= form_for @ingredient do |f| %>
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+            <%= f.hidden_field(:menu_item_id,:value => @menu_item.id) %>
+            <%= f.submit "Create Menu item" %>
+        <%end%>
+        <br><br>
+        <%= link_to "Back to #{Bakery.find(@menu_item.bakery_id).name}'s Page", bakery_path(Bakery.find(@menu_item.bakery_id)) %>
+    
+    </body>
+</html>
