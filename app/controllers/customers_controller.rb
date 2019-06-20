@@ -15,7 +15,8 @@ class CustomersController < ApplicationController
    def create
      @customer = Customer.create(customer_params)
      if @customer.valid?
-       redirect_to login_path
+      session['user_id'] = @customer.id
+      redirect_to customer_path(@customer)
      else
        render :new
     end

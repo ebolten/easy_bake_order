@@ -1,3 +1,8 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+<body class='create_login'>
+ 
 <h1>Create Account</h1>
 
 <% if @customer.errors %>
@@ -15,3 +20,5 @@
     <%= c.password_field :password_digest %>
     <%= c.submit "Create Account" %>
 <% end %>
+  
+</body>

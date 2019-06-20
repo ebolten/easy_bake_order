@@ -33,13 +33,18 @@
         
         <br><br>
         
+        <% if Customer.find(session['user_id']).name == 'admin' %>
+
             <%= form_for @menu_item do |f| %>
                 <%= f.label :name %>
                 <%= f.text_field :name %>
                 <%= f.hidden_field(:bakery_id,:value => @bakery.id) %>
-                <%= f.submit "Create Menu item" %>
+                <%= f.submit "Add Menu item" %>
             <%end%>
             <br><br>
+        <%else%>
+        <%end%>
+
             <%= link_to "Back to Bakeries Page", bakeries_path %>
         </div>
 

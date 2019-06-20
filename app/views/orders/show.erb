@@ -6,21 +6,33 @@
         <title>Order Information</title>
     </head>
 
-    <body style=margin:20px>
+    <body class='show_bakery'>
 
             <div><button> <%= link_to "Back to Profile", customer_path(Customer.find(@order.customer_id)) %> </button></div><br>
 
             <h1> <%= @order.menu_item.name %> </h1>
+            <h2> <%= "#{@month} #{@day}, #{@year}" %> </h2>
 
             <h3>Order: <%= @order.menu_item.name %></h3>
-            <h3>Description: <%= @order.desc %></h3>
-            <h3>Delivery? <%= @order.is_delivery? %></h3>
+            <h3>Description: "<%= @order.desc %>"</h3>
 
-        <% if @order.menu_item.name == 'Cake' %>
-            <%= image_tag 'cake.png' %><br>
-        <% elsif @order.menu_item.name == 'Donut' %>
-            <%= image_tag 'donut.png' %><br>
-        <%end%>
+            <% if @order.is_delivery? == true %>
+                <h3>Was Delivered.</h3>
+             <% else %>
+                <h3>Was Picked Up.</h3>
+            <%end%>
+
+            <% if @order.layers == nil || @order.layers == 0 %>
+                <h3>Layers: 1 </h3>
+            <% else %>
+                <h3>Layers: <%= @order.layers %> </h3>
+            <%end%>
+
+            <% if @order.filling == nil || @order.filling.length == 0 %>
+                <h3>No Filling.</h3>
+            <% else %>
+                <h3>Filling: <%= @order.filling %> </h3>
+            <%end%>
 
         <br>
         <%= form_tag @order, method:'DELETE' do %>

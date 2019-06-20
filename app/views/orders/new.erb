@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
 
-
 <% if @order.errors %>
   <% @order.errors.full_messages.each do |message|%><br>
     <%= message %>
@@ -10,17 +9,20 @@
 <html>
     <head>
         <title>New Order</title>
-        <h1>New Order</h1>
     </head>
 
-    <body>
+    <body class='new_order'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+   
+        <h1>New Order</h1>
 
         <%= form_for @order do |f|%>
 
             <%= f.hidden_field(:customer_id, :value => session["user_id"]) %>
 
             <%= f.label "Is Your Order a Delivery?" %>
-            <%= f.radio_button(:is_delivery, :checked => false, :value => true) %>Yes
+            <%= f.radio_button(:is_delivery, :checked => true, :value => true) %>Yes
             <%= f.radio_button(:is_delivery, :checked => false, :value => false) %>No
 
             <br>
@@ -32,6 +34,15 @@
             <% else %>
                 <%= f.collection_select(:menu_item_id, MenuItem.all, :id, :name, {:prompt => "Select one"}) %>
             <%end%>
+
+            <%= f.label "Choose Number of Layers" %>
+            <%= f.text_field :layers %>
+
+            <br>
+            <br>
+
+            <%= f.label "Choose a Filling (optional)" %>
+            <%= f.text_field :filling %>
 
             <br>
             <br>
