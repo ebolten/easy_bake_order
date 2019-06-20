@@ -8,11 +8,6 @@ class CustomersController < ApplicationController
         @customer = Customer.find(params[:id])
     end
 
-   def index
-     @customer = Customer.all
-   end
-
-
    def new
      @customer = Customer.new
    end
@@ -26,7 +21,16 @@ class CustomersController < ApplicationController
     end
   end
 
+    def update
+      @customer = Customer.find(params['id'])
+      @customer.update(customer_params)
+      redirect_to customer_path(@customer)
+    end
 
+    def edit
+      @customer = Customer.find(params['id'])
+    end
+  
 
   private
 

@@ -3,35 +3,46 @@
     <head>
         <% session['bakery_id'] = @bakery.id %>
         <title>Bakery Info Page</title>
-        <h1> <%= @bakery.name %> </h1>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     </head>
 
-    <body>
+    <body class='bakery_body'>
+            <div class='bakery_header'>
+            <h1> <%= @bakery.name %> </h1>
 
-        <h2> Address: <%= @bakery.address %> </h2>
+            <h2> Address: <%= @bakery.address %> </h2>
 
-        <br>
-        <hr />
-        <br>
-
-        <div>
-        <h1> Menu </h1>
-        <ul>
-        <% @bakery.menu_items.each do |item| %>
-            <h2><li><%= item.name %></li></h2>
+            <br>
+            <hr />
+            <br>
+        </div>
+        
+        <!-- displays menu for this bakery -->
+        <div class='bakery_menu'>
+            <h1> Menu </h1>
             <ul>
-                <% item.ingredients.each do |ing| %>
-                    <h4><li><%= ing.name %></h4></li>
+                <% @bakery.menu_items.each do |item| %>
+                    <h2><li><%= link_to item.name, menu_item_path(item) %></li></h2>
                 <%end%>
-
-
             </ul>
-        <%end%>
-        </ul>
+        
+        <br>
+        
+            <%= link_to 'Create an Order with This Bakery', new_order_path %><br>
+        
+        <br><br>
+        
+            <%= form_for @menu_item do |f| %>
+                <%= f.label :name %>
+                <%= f.text_field :name %>
+                <%= f.hidden_field(:bakery_id,:value => @bakery.id) %>
+                <%= f.submit "Create Menu item" %>
+            <%end%>
+            <br><br>
+            <%= link_to "Back to Bakeries Page", bakeries_path %>
         </div>
 
-        <br>
-        <%= link_to 'Create an Order with This Bakery', new_order_path %>
         
     </body>
 </html>

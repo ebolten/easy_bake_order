@@ -1,12 +1,16 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <div><button> <%= link_to "Back to Profile", customer_path(Customer.find(@order.customer_id)) %> </button></div><br>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
         <title>Order Information</title>
-        <h1> <%= @order.menu_item.name %> </h1>
     </head>
 
-    <body>
+    <body style=margin:20px>
+
+            <div><button> <%= link_to "Back to Profile", customer_path(Customer.find(@order.customer_id)) %> </button></div><br>
+
+            <h1> <%= @order.menu_item.name %> </h1>
 
             <h3>Order: <%= @order.menu_item.name %></h3>
             <h3>Description: <%= @order.desc %></h3>

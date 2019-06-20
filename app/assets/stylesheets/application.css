@@ -13,3 +13,50 @@
  *= require_tree .
  *= require_self
  */
+
+ /* customer show page body */
+ .customer_body {
+     text-align:center;
+     background-color: antiquewhite;
+ }
+/* customer show page header */
+ .customer_profile {
+    background-image: url("cake.png");
+    height: 170px;
+    margin: 10px;
+    font-size :70px;
+    font-weight: bold;
+ }
+
+ /* the customer's name  */
+ #customer_name {
+     color:black;
+     font-weight: 5000;
+ }
+
+ .bakery_header {
+     background-image: url("bakery.jpeg");
+     background-position:center;
+     color: white;
+     height: 130px;
+ }
+
+ .bakery_body {
+    background-color: antiquewhite;
+ }
+
+ .bakery_menu {
+     padding: 15px
+ }
+
+ .menu_item_body {
+    background-color: antiquewhite;
+    padding: 15px
+ }
+
+ 
+ 
+ 
+
+
+

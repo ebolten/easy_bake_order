@@ -6,6 +6,9 @@
     </head>
 
     <body>
+
+        <h1>Most Popular Bakery: <%= Bakery.most_popular %></h1>
+
         <div>
         <% @bakeries.each do |bakery| %>
             <h2><%= link_to bakery.name, bakery_path(bakery) %></h2>
