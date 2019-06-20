@@ -57,6 +57,33 @@
  .login {
      text-align: center;
      background-color: antiquewhite;
+     margin: 50px;
+ }
+
+ .create_login {
+    text-align: center;
+    background-color: antiquewhite;
+    margin: 50px;
+ }
+
+ .new_bakery {
+    background-color: antiquewhite;
+    padding: 15px
+ }
+
+ .new_order {
+    background-color: antiquewhite;
+    padding: 15px
+ }
+
+ .index_bakery {
+    background-color: antiquewhite;
+    padding: 15px
+ }
+
+ .show_bakery {
+    background-color: antiquewhite;
+    padding: 15px
  }
 
  

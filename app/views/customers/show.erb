@@ -8,62 +8,79 @@
     </head>
 
     <body class='customer_body'>
+
+        <% if @customer.id == session['user_id'] %>
     
-        <!-- menu at top of page -->
-        <div class="ui inverted menu">
-            <a class="item">
-                <%= form_tag logout_path, method:'DELETE' do %>
+            <!-- menu at top of page -->
+            <div class="ui inverted menu">
+                <a class="item">
+                    <%= form_tag logout_path, method:'DELETE' do %>
                     <%= submit_tag "Log Out" %></p>
-                <%end%>
-            </a>
-            <a class="item">
-                <%= form_tag new_order_path, method:'GET' do %>
-                    <%= submit_tag "Create an Order" %>
-                <%end%>
-            </a>
-            <a class="item">
-            <%= form_tag bakeries_path, method:'GET' do %>
-                    <%= submit_tag "See all Bakeries" %>
-                <%end%>
-            </a>
-            <a class="item">
-                <%= form_tag edit_customer_path, method:'GET' do %>
-                    <%= submit_tag "Edit Profile" %>
-                <%end%>
-            </a>
-        </div>
+                    <%end%>
+                </a>
+                <a class="item">
+                    <%= form_tag new_order_path, method:'GET' do %>
+                        <%= submit_tag "Create an Order" %>
+                    <%end%>
+                </a>
+                <a class="item">
+                    <%= form_tag bakeries_path, method:'GET' do %>
+                        <%= submit_tag "See all Bakeries" %>
+                    <%end%>
+                </a>
+                <a class="item">
+                    <%= form_tag edit_customer_path, method:'GET' do %>
+                        <%= submit_tag "Edit Profile" %>
+                    <%end%>
+                </a>
+            </div>
 
-        <!-- customer profile header -->
-        <div class='customer_profile'>
-        </div>
+            <!-- customer profile header -->
+            <div class='customer_profile'>
+            </div>
 
-        <!-- basic information about customer -->
-        <div>
-            <h1 style='font-size:50px;font-weight:bold'><%= @customer.name %></h1>
+            <!-- basic information about customer -->
+            <div>
+                <h1 style='font-size:50px;font-weight:bold'><%= @customer.name %></h1>
 
-            <p style='font-size:15px;font-weight:bold'>Telephone: <%= @customer.tel_num %></p>
+                <p style='font-size:15px;font-weight:bold'>Telephone: <%= @customer.tel_num %></p>
 
-            <p style='font-size:15px;font-weight:bold'>Favorite Bakery: <%= @customer.favorite_resaurant %> </p>
-        </div>
+                <p style='font-size:15px;font-weight:bold'>Favorite Bakery: <%= @customer.favorite_resaurant %> </p>
+            </div>
 
-        <!-- shows customer's orders -->
-        <div class='customer_orders'>
-            <br>
-            <h2 style='font-size:40px;font-weight:bold'> Orders: </h1>
+            <!-- shows customer's orders -->
+            <div class='customer_orders'>
+                <br>
+                <h2 style='font-size:40px;font-weight:bold'> Orders: </h1>
         
-            <% if @customer.orders.length == 0 %>
-                <h3> No Orders Yet. </h3>
-            <%else%>
+                <% if @customer.orders.length == 0 %>
+                    <h3> No Orders Yet. </h3>
+                <%else%>
                 
-                <% i = 0 %>
-                <% @customer.orders.each do |order| %>
-                    <% i += 1 %>
-                    <h3><%= link_to order.menu_item.bakery.name, bakery_path(order.menu_item.bakery) %></h3>
-                    <h4><li><%= link_to "Order Number #{i}", order_path(order) %></li></h4>
-                    <br>
+                    <% i = 0 %>
+                    <% @customer.orders.each do |order| %>
+                        <% i += 1 %>
+                        <h3><%= link_to order.menu_item.bakery.name, bakery_path(order.menu_item.bakery) %></h3>
+                        <h4><li><%= link_to "Order Number #{i}", order_path(order) %></li></h4>
+                        <br>
+                    <%end%>
                 <%end%>
-            <%end%>
-        </div>
+            </div>
+
+        <%else%>
+            <div style='margin:50px;'>
+
+                <% if session['user_id'] == nil %>
+                    <h1>You are not logged in.</h1>
+                    <%= link_to "Login", login_path %>
+                <% else %>
+                    <h1>You cannot access this profile.</h1>
+                    <%= link_to "Go to Your Profile", customer_path(Customer.find(session['user_id'])) %>
+                <%end%>
+
+            </div>
+
+        <%end%>
         
     </body>
 </html>
