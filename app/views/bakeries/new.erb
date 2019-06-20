@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     
-
+    <% if Customer.find(session['user_id']).name == 'admin' %>
         <h1>Create a New Bakery</h1>
         
         <%= form_for @bakery do |f| %>
@@ -19,7 +19,12 @@
             <%= f.text_field :address %>
             <%= f.submit "Create Bakery" %>
         <% end %>
+    <%else%>
 
+        <h1>You do not have access to this page.</h1>
+        <h3><%= link_to 'Back to Profile', customer_path(Customer.find(session['user_id'])) %></h3>
+        
+    <%end%>
     </body>
 
 </html>

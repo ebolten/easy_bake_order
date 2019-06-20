@@ -33,6 +33,13 @@
                         <%= submit_tag "Edit Profile" %>
                     <%end%>
                 </a>
+                <% if @customer.name == 'admin' %>
+                    <a class="item">
+                        <%= form_tag new_bakery_path, method:'GET' do %>
+                            <%= submit_tag "Create Bakery" %>
+                        <%end%>
+                <%end%>
+                    </a>
             </div>
 
             <!-- customer profile header -->
