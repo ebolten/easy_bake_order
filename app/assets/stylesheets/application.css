@@ -57,7 +57,7 @@
  .login {
      text-align: center;
      background-color: antiquewhite;
-     margin: 50px;
+     /* margin: 50px; */
  }
 
  .create_login {
